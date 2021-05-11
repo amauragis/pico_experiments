@@ -15,8 +15,18 @@ add_executable(hello_world
     src/hello_world.c
 )
 
+add_executable(blinky
+    src/blinky.c
+)
+
+add_executable(pwm
+    src/blinky_pwm.c
+)
+
 # Add pico_stdlib library which aggregates commonly used features
 target_link_libraries(hello_world pico_stdlib)
+target_link_libraries(blinky pico_stdlib )
+target_link_libraries(pwm pico_stdlib hardware_pwm)
 
 # enable usb output, disable uart output
 pico_enable_stdio_usb(hello_world 1)
@@ -24,3 +34,5 @@ pico_enable_stdio_uart(hello_world 0)
 
 # create map/bin/hex/uf2 file in addition to ELF.
 pico_add_extra_outputs(hello_world)
+pico_add_extra_outputs(blinky)
+pico_add_extra_outputs(pwm)
